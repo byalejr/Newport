@@ -1,0 +1,15 @@
+# Activa el motor de reescritura
+RewriteEngine On
+
+# Redirecciona /inicio a /index.html
+RewriteRule ^inicio$ index.html [L]
+
+# Opcional: Redirecciona las solicitudes a /index.html si no se encuentra otro archivo
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^inicio$ index.html [L]
+
+# Oculta la extensión .html en todas las páginas
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)$ $1.html [L]
